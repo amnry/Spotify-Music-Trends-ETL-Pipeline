@@ -12,16 +12,16 @@ from io import StringIO
 import pandas as pd
 
 default_args = {
-    'owner': 'Darshil',
+    'owner': 'Aman',
     'depends_on_past': False,
-    'start_date': datetime(2024, 6, 1),
+    'start_date': datetime(2024, 9, 15),
     'email_on_failure': False,
     'email_on_retry': False,
 }
 
 def _fetch_spotify_data(**kwargs):
-    client_id = Variable.get('spotify_client_id')
-    client_secret = Variable.get('spotify_client_secret')
+    client_id = Variable.get('spotify client ID')
+    client_secret = Variable.get('spotify client secret')
     
     client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
@@ -39,9 +39,9 @@ def _fetch_spotify_data(**kwargs):
     kwargs['ti'].xcom_push(key='spotify_data', value=json.dumps(spotify_data))
     
 def _read_data_from_s3(**kwargs):
-    s3_hook = S3Hook(aws_conn_id='aws_s3_airbnb')
-    bucket_name = "spotify-etl-project-darshil"
-    prefix = "raw_data/to_processed/"
+    s3_hook = S3Hook(aws_conn_id='aws_s3_spotify')
+    bucket_name = "spotify-etl-bucket-aman"
+    prefix = "raw-data/to-be-processed/"
     
     keys = s3_hook.list_keys(bucket_name=bucket_name, prefix=prefix)
     
@@ -126,10 +126,10 @@ def _process_songs(**kwargs):
 
 
 def _move_processed_data(**kwargs):
-    s3_hook = S3Hook(aws_conn_id='aws_s3_airbnb')
-    bucket_name = "spotify-etl-project-darshil"
-    prefix = "raw_data/to_processed/"
-    target_prefix = "raw_data/processed/"
+    s3_hook = S3Hook(aws_conn_id='aws_s3_spotify')
+    bucket_name = "spotify-etl-bucket-aman"
+    prefix = "raw-data/to-be-processed/"
+    target_prefix = "raw-data/processed/"
 
     keys = s3_hook.list_keys(bucket_name=bucket_name, prefix=prefix)
     
@@ -161,9 +161,9 @@ fetch_data = PythonOperator(
 
 store_raw_to_s3 = S3CreateObjectOperator(
         task_id='upload_raw_to_s3',
-        aws_conn_id='aws_s3_airbnb',
-        s3_bucket='spotify-etl-project-darshil',
-        s3_key='raw_data/to_processed/{{ task_instance.xcom_pull(task_ids="fetch_spotify_data", key="spotify_filename") }}',
+        aws_conn_id='aws_s3_spotify',
+        s3_bucket='spotify-etl-bucket-aman',
+        s3_key='raw-data/to-be-processed/{{ task_instance.xcom_pull(task_ids="fetch_spotify_data", key="spotify_filename") }}',
         data='{{ task_instance.xcom_pull(task_ids="fetch_spotify_data", key="spotify_data") }}',
         replace=True,
         dag=dag,
@@ -184,9 +184,9 @@ process_album = PythonOperator(
 
 store_album_to_s3 = S3CreateObjectOperator(
     task_id='store_album_to_s3',
-    aws_conn_id='aws_s3_airbnb',
-    s3_bucket='spotify-etl-project-darshil',
-    s3_key='transformed_data/album_data/album_transformed_{{ ts_nodash }}.csv',
+    aws_conn_id='aws_s3_spotify',
+    s3_bucket='spotify-etl-bucket-aman',
+    s3_key='transformed_data/album-data/album_transformed_{{ ts_nodash }}.csv',
     data='{{ task_instance.xcom_pull(task_ids="process_album", key="album_content") }}',
     replace=True,
     dag=dag,
@@ -201,9 +201,9 @@ process_artist = PythonOperator(
 
 store_artist_to_s3 = S3CreateObjectOperator(
     task_id='store_artist_to_s3',
-    aws_conn_id='aws_s3_airbnb',
-    s3_bucket='spotify-etl-project-darshil',
-    s3_key='transformed_data/artist_data/artist_transformed_{{ ts_nodash }}.csv',
+    aws_conn_id='aws_s3_spotify',
+    s3_bucket='spotify-etl-bucket-aman',
+    s3_key='transformed_data/artist-data/artist_transformed_{{ ts_nodash }}.csv',
     data='{{ task_instance.xcom_pull(task_ids="process_artist", key="artist_content") }}',
     replace=True,
     dag=dag,
@@ -218,9 +218,9 @@ process_songs = PythonOperator(
 
 store_songs_to_s3 = S3CreateObjectOperator(
     task_id='store_songs_to_s3',
-    aws_conn_id='aws_s3_airbnb',
-    s3_bucket='spotify-etl-project-darshil',
-    s3_key='transformed_data/songs_data/songs_transformed_{{ ts_nodash }}.csv',
+    aws_conn_id='aws_s3_spotify',
+    s3_bucket='spotify-etl-bucket-aman',
+    s3_key='transformed_data/songs-data/songs_transformed_{{ ts_nodash }}.csv',
     data='{{ task_instance.xcom_pull(task_ids="process_songs", key="song_content") }}',
     replace=True,
     dag=dag,
