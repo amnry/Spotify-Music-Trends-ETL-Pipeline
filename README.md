@@ -7,7 +7,7 @@ The **Spotify ETL Data Pipeline** project scrapes data from Spotify's Global Top
 
 This pipeline can be scheduled to run at specific intervals, leveraging the power of Airflow DAGs to handle extraction, transformation, and loading tasks seamlessly.
 
-![Screenshot 2024-09-15 at 8 16 01 PM](https://github.com/user-attachments/assets/73a51161-f84e-4e24-ab2a-ac4d251c7762)
+![Screenshot 2024-09-15 at 8 33 44 PM](https://github.com/user-attachments/assets/c7f36284-37fb-4795-97b8-0eb603e25ce1)
 
 ## Features
 
