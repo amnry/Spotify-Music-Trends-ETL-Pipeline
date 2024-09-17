@@ -3,11 +3,11 @@
 
 ## Overview
 
-The **Spotify ETL Data Pipeline** project scrapes data from Spotify's Global Top Songs playlist, processes the data, and stores it in Amazon S3. The extracted data is divided into distinct buckets for **artists**, **albums**, and **songs**. The project uses **Docker Compose Airflow** to orchestrate and automate the entire process.
+This project scrapes data from Spotify's Global Top Songs playlist, processes the data, and stores it in **Amazon S3**. The extracted data is divided into distinct buckets for artists, albums, and songs. The project uses **Docker Compose Airflow** to orchestrate and automate the entire process.
 
 This pipeline can be scheduled to run at specific intervals, leveraging the power of Airflow DAGs to handle extraction, transformation, and loading tasks seamlessly.
 
-![Screenshot 2024-09-15 at 8 33 44 PM](https://github.com/user-attachments/assets/c7f36284-37fb-4795-97b8-0eb603e25ce1)
+![DAG Graph](path_to_your_dag_graph_image)
 
 ## Features
 
@@ -29,7 +29,7 @@ This pipeline can be scheduled to run at specific intervals, leveraging the powe
 ### Prerequisites
 
 - **Docker and Docker Compose**: Ensure you have Docker and Docker Compose installed to run Airflow.
-- **AWS S3 Access**: You will need AWS credentials with appropriate permissions to create and upload data to an S3 bucket.
+- **AWS S3 Access**: Requires AWS credentials with appropriate permissions to create and upload data to an S3 bucket.
 - **Spotify API Credentials**: Obtain your Spotify API credentials from the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/).
 
 ### Installation
@@ -90,6 +90,12 @@ This pipeline can be scheduled to run at specific intervals, leveraging the powe
 1. **Extract**: The pipeline scrapes the Spotify playlist and stores the raw JSON data in an S3 bucket.
 2. **Transform**: The data is cleaned and categorized into artists, albums, and songs.
 3. **Load**: The processed data is uploaded into separate S3 buckets for future analysis or usage.
+
+## DAG Graph
+
+This is a visualization of the DAG (Directed Acyclic Graph) that orchestrates the entire ETL pipeline:
+
+![DAG Graph](path_to_your_dag_graph_image)
 
 ## Future Enhancements
 
