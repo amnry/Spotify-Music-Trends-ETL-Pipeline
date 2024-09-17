@@ -7,6 +7,9 @@ This project scrapes data from Spotify's Global Top Songs playlist, processes th
 
 This pipeline can be scheduled to run at specific intervals, leveraging the power of Airflow DAGs to handle extraction, transformation, and loading tasks seamlessly.
 
+## DAG Graph
+
+This is a visualization of the DAG (Directed Acyclic Graph) that orchestrates the entire ETL pipeline:
 ![Screenshot 2024-09-15 at 8 33 44 PM](https://github.com/user-attachments/assets/59a49bb6-c459-4c66-bef4-cfe88ebde424)
 
 
@@ -91,12 +94,6 @@ This pipeline can be scheduled to run at specific intervals, leveraging the powe
 1. **Extract**: The pipeline scrapes the Spotify playlist and stores the raw JSON data in an S3 bucket.
 2. **Transform**: The data is cleaned and categorized into artists, albums, and songs.
 3. **Load**: The processed data is uploaded into separate S3 buckets for future analysis or usage.
-
-## DAG Graph
-
-This is a visualization of the DAG (Directed Acyclic Graph) that orchestrates the entire ETL pipeline:
-
-![DAG Graph](path_to_your_dag_graph_image)
 
 ## Future Enhancements
 
