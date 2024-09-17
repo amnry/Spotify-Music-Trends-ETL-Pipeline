@@ -7,7 +7,8 @@ This project scrapes data from Spotify's Global Top Songs playlist, processes th
 
 This pipeline can be scheduled to run at specific intervals, leveraging the power of Airflow DAGs to handle extraction, transformation, and loading tasks seamlessly.
 
-![DAG Graph](path_to_your_dag_graph_image)
+![Screenshot 2024-09-15 at 8 33 44 PM](https://github.com/user-attachments/assets/59a49bb6-c459-4c66-bef4-cfe88ebde424)
+
 
 ## Features
 
