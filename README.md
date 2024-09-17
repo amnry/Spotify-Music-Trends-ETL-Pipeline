@@ -10,6 +10,7 @@ This pipeline can be scheduled to run at specific intervals, leveraging the powe
 ## DAG Graph
 
 This is a visualization of the DAG (Directed Acyclic Graph) that orchestrates the entire ETL pipeline:
+
 ![Screenshot 2024-09-15 at 8 33 44 PM](https://github.com/user-attachments/assets/59a49bb6-c459-4c66-bef4-cfe88ebde424)
 
 
