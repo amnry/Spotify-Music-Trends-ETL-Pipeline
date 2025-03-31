@@ -7,8 +7,7 @@ This project implements a scalable ETL (Extract, Transform, Load) pipeline to pr
 ## Pipeline Architecture
 
 The following flowchart illustrates the ETL pipeline workflow:
-
-![Spotify ETL Pipeline Flowchart]('/Users/amanarya/Downloads/Screenshot 2025-03-30 at 6.31.31 PM.png')
+<img width="1512" alt="Screenshot 2025-03-30 at 6 31 31 PM" src="https://github.com/user-attachments/assets/ff98cba5-108a-4b6a-a99c-bccda636b287" />
 
 ### Data Flow
 1. **Extract**:
