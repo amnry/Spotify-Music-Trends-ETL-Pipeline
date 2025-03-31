@@ -8,7 +8,7 @@ This project implements a scalable ETL (Extract, Transform, Load) pipeline to pr
 
 The following flowchart illustrates the ETL pipeline workflow:
 
-![Spotify ETL Pipeline Flowchart](path/to/your/flowchart-image.png)
+![Spotify ETL Pipeline Flowchart]('/Users/amanarya/Downloads/Screenshot 2025-03-30 at 6.31.31 PM.png')
 
 ### Data Flow
 1. **Extract**:
@@ -59,5 +59,5 @@ The following flowchart illustrates the ETL pipeline workflow:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/spotify-music-trends-etl-pipeline.git
+   git clone https://github.com/amnry/spotify-music-trends-etl-pipeline.git
    cd spotify-music-trends-etl-pipeline
